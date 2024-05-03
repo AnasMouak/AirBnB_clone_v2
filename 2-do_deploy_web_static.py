@@ -9,10 +9,10 @@ env.hosts = ['100.26.218.180', '35.168.8.95']
 
 def do_deploy(archive_path):
     """distributes an archive to the web servers"""
-    no_ext_arch_path = archive_path.split("/")[-1].split(".")[0]
     if not os.path.exists(archive_path):
         return False
     try:
+        no_ext_arch_path = archive_path.split("/")[-1].split(".")[0]
         put(f'{archive_path}', '/tmp/')
         run(f'mkdir -p /data/web_static/releases/{no_ext_arch_path}')
         run(f'tar -xzf /tmp/{archive_path.split("/")[-1]} -C /data/web_static/releases/{no_ext_arch_path}')
