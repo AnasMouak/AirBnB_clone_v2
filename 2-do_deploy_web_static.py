@@ -14,13 +14,13 @@ def do_deploy(archive_path):
     try:
         no_ext_arch_path = archive_path.split("/")[-1].split(".")[0]
         put(f'{archive_path}', '/tmp/')
-        run(f'mkdir -p /data/web_static/releases/{no_ext_arch_path}')
-        run(f'tar -xzf /tmp/{archive_path.split("/")[-1]} -C /data/web_static/releases/{no_ext_arch_path}')
+        run(f'mkdir -p /data/web_static/releases/{no_ext_arch_path}/')
+        run(f'tar -xzf /tmp/{archive_path.split("/")[-1]} -C /data/web_static/releases/{no_ext_arch_path}/')
         run(f'rm /tmp/{archive_path.split("/")[-1]}')
-        run(f'mv /data/web_static/releases/{no_ext_arch_path}/web_static/* /data/web_static/releases/{no_ext_arch_path}')
+        run(f'mv /data/web_static/releases/{no_ext_arch_path}/web_static/* /data/web_static/releases/{no_ext_arch_path}/')
         run(f'rm -rf /data/web_static/releases/{no_ext_arch_path}/web_static')
         run('rm -rf /data/web_static/current')
-        run(f'ln -s /data/web_static/releases/{no_ext_arch_path} /data/web_static/current')
+        run(f'ln -s /data/web_static/releases/{no_ext_arch_path}/ /data/web_static/current')
         return True
     except:
         return False
