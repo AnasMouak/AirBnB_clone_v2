@@ -10,7 +10,7 @@ def do_deploy(archive_path):
     if not os.path.exists(archive_path):
         return False
     try:
-        no_ext_arch_path = archive_path.split("/")[-1].split(".")[0]
+        no_ext_arch_path = os.path.basename(archive_path).split(".")[0]
         put(archive_path, '/tmp/')
         run(f'mkdir -p /data/web_static/releases/{no_ext_arch_path}/')
         run(f'tar -xzf /tmp/{no_ext_arch_path}.tgz -C /data/web_static/releases/{no_ext_arch_path}/')
