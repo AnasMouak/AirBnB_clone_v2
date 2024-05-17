@@ -15,9 +15,8 @@ def teardown_db(exception):
 @app.route('/states_list', strict_slashes=False)
 def states_list():
     """return states list"""
-    states = storage.all("State").values()
-    sorted_states = sorted(list(states), key=lambda x: x.name)
-    return render_template('7-states_list.html', states=sorted_states)
+    states = sorted(list(storage.all("State").values()), key=lambda x: x.name)
+    return render_template('7-states_list.html', states=states)
 
 
 if __name__ == "__main__":
